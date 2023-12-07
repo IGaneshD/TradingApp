@@ -1,0 +1,25 @@
+{% extends 'index.html'%}
+{% block content %}
+
+<main>
+    <h2>Upload CSV File</h2>
+    <form method="post" enctype="multipart/form-data" id="uploadForm">
+        {% csrf_token %}
+        <div class="row">
+            <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+        </div>
+        <div class="row">
+            <label>TimeFrame(in Minutes)</label>
+            <input type="number" id="timeFrame" name="timeFrame" required>
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+    {% if download_link %}
+        <a href="{{ download_link }}" download="converted_data.json">
+            <button id="downloadBtn">Download Converted JSON File</button>
+        </a>
+    {% endif %}
+</main>
+
+
+{% endblock content %}
